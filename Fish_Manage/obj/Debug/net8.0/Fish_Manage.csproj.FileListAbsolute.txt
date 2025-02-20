@@ -14,6 +14,7 @@ D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.AspNetCore
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.Versioning.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -128,6 +129,7 @@ D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\Fish_Manage.Assembly
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\Fish_Manage.csproj.CoreCompileInputs.cache
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\Fish_Manage.MvcApplicationPartsAssemblyInfo.cs
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\Fish_Manage.MvcApplicationPartsAssemblyInfo.cache
+D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\Fish_Manage.sourcelink.json
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\staticwebassets.build.json
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\staticwebassets.development.json
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\staticwebassets\msbuild.Fish_Manage.Microsoft.AspNetCore.StaticWebAssets.props

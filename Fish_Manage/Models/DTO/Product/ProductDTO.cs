@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Fish_Manage.Repository.DTO
+namespace Fish_Manage.Models.DTO.Product
 {
     public class ProductDTO
     {

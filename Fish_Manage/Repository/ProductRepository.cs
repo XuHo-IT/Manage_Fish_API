@@ -1,4 +1,5 @@
 ﻿using Fish_Manage.Models;
+using Fish_Manage.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fish_Manage.Repository
@@ -11,6 +12,7 @@ namespace Fish_Manage.Repository
         {
             _context = context;
         }
+
 
         async Task<Product> IProductRepository.UpdateAsync(Product entity)
         {
