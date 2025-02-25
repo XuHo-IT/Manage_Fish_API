@@ -21,6 +21,8 @@ namespace Fish_Manage.Models
 
         public string? Supplier { get; set; }
 
+        public string ImageURl { get; set; }
+
         public virtual ICollection<Inventory> Inventories { get; set; } = new List<Inventory>();
 
         public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();

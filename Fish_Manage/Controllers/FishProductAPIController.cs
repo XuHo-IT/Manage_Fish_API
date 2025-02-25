@@ -74,23 +74,25 @@ namespace Fish_Manage.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<APIResponse>> CreateProduct([FromBody] ProductCreateDTO createDTO)
+        public async Task<ActionResult<APIResponse>> CreateProduct([FromForm] ProductCreateDTO createDTO, IFormFile imageFile, [FromServices] CloudinaryRepository cloudinaryService)
         {
             try
             {
-
                 if (await _dbProduct.GetAsync(u => u.ProductName.ToLower() == createDTO.ProductName.ToLower()) != null)
                 {
                     ModelState.AddModelError("ErrorMessages", "Product already Exists!");
                     return BadRequest(ModelState);
                 }
 
-                if (createDTO == null)
+                if (createDTO == null || imageFile == null)
                 {
-                    return BadRequest(createDTO);
+                    return BadRequest("Invalid product data or image file.");
                 }
 
+                // Upload image to Cloudinary
+                string imageUrl = await cloudinaryService.UploadImageAsync(imageFile);
                 Product product = _mapper.Map<Product>(createDTO);
+                product.ImageURl = imageUrl;
 
                 await _dbProduct.CreateAsync(product);
                 _response.Result = _mapper.Map<ProductDTO>(product);
@@ -100,11 +102,13 @@ namespace Fish_Manage.Controllers
             catch (Exception ex)
             {
                 _response.IsSuccess = false;
-                _response.ErrorMessages
-                     = new List<string>() { ex.ToString() };
+                _response.ErrorMessages = new List<string>() { ex.ToString() };
             }
             return _response;
         }
+
+
+
         [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]

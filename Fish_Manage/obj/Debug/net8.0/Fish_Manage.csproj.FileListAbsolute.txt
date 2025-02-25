@@ -9,6 +9,7 @@ D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\AutoMapper.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Azure.Core.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Azure.Identity.dll
+D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\CloudinaryDotNet.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Humanizer.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
@@ -26,7 +27,10 @@ D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.EntityFram
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.Identity.Client.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
@@ -144,3 +148,4 @@ D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\refint\Fish_Manage.d
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\Fish_Manage.pdb
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\Fish_Manage.genruntimeconfig.cache
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\ref\Fish_Manage.dll
+D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Fish_Manage.staticwebassets.runtime.json

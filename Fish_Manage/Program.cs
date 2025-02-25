@@ -1,8 +1,7 @@
-using Fish_Manage;
 using Fish_Manage.Models;
-using Fish_Manage.Repository;
-using Fish_Manage.Repository.DTO;
 using Fish_Manage.Repository.IRepository;
+using Fish_Manage.Repository;
+using Fish_Manage;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,9 +22,14 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<FishManageContext>()
     .AddDefaultTokenProviders();
 builder.Services.AddResponseCaching();
+
+
 // Configure AutoMapper, Repositories, and Services
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+builder.Services.AddSingleton<CloudinaryRepository>();
+
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 builder.Services.AddControllers()
@@ -93,6 +97,17 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+// Configure CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
 
 var app = builder.Build();
 
@@ -105,7 +120,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication(); 
+app.UseCors("AllowAll"); // Use the CORS policy
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -10,10 +10,14 @@ namespace Fish_Manage.Models.DTO.Product
 
         public decimal? Price { get; set; }
 
+        [Required]
         public string Category { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
+        [Required]
         public string Supplier { get; set; }
+
     }
 }

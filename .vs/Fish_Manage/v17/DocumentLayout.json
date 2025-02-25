@@ -3,16 +3,56 @@
   "WorkspaceRootPath": "D:\\CSharp_Projects\\Fish_Manage\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\models\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\models\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\migrations\\fishmanagecontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\migrations\\fishmanagecontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\migrations\\20250222033021_updateproducturl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\migrations\\20250222033021_updateproducturl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\models\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\models\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\repository\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\controllers\\fishproductapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\controllers\\fishproductapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\repository\\cloudinaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\repository\\cloudinaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\repository\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\repository\\orderrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\models\\dto\\product\\productcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\models\\dto\\product\\productcreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|d:\\csharp_projects\\fish_manage\\fish_manage\\repository\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AFA2634-BDA6-488F-A3B5-293F81C8E14C}|Fish_Manage\\Fish_Manage.csproj|solutionrelative:fish_manage\\repository\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,42 +114,163 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Inventory.cs",
-              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Models\\Inventory.cs",
-              "RelativeDocumentMoniker": "Fish_Manage\\Models\\Inventory.cs",
-              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Models\\Inventory.cs",
-              "RelativeToolTip": "Fish_Manage\\Models\\Inventory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAcAAAA",
+              "DocumentIndex": 3,
+              "Title": "20250222033021_updateProductURl.cs",
+              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Migrations\\20250222033021_updateProductURl.cs",
+              "RelativeDocumentMoniker": "Fish_Manage\\Migrations\\20250222033021_updateProductURl.cs",
+              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Migrations\\20250222033021_updateProductURl.cs",
+              "RelativeToolTip": "Fish_Manage\\Migrations\\20250222033021_updateProductURl.cs",
+              "ViewState": "AQIAAKMAAAAAAAAAAAAcwLYAAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T07:55:28.706Z",
+              "WhenOpened": "2025-02-25T04:15:09.4Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Program.cs",
-              "RelativeDocumentMoniker": "Fish_Manage\\Program.cs",
-              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Program.cs",
-              "RelativeToolTip": "Fish_Manage\\Program.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAACIAAAAHAAAA",
+              "Title": "FishManageContextModelSnapshot.cs",
+              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Migrations\\FishManageContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "Fish_Manage\\Migrations\\FishManageContextModelSnapshot.cs",
+              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Migrations\\FishManageContextModelSnapshot.cs",
+              "RelativeToolTip": "Fish_Manage\\Migrations\\FishManageContextModelSnapshot.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAQwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T07:49:00.416Z",
+              "WhenOpened": "2025-02-25T04:14:42.794Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Models\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "Fish_Manage\\Models\\ApplicationUser.cs",
+              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Models\\ApplicationUser.cs",
+              "RelativeToolTip": "Fish_Manage\\Models\\ApplicationUser.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T08:31:53.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Fish_Manage\\Models\\User.cs",
+              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Models\\User.cs",
+              "RelativeToolTip": "Fish_Manage\\Models\\User.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T08:31:46.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserDTO.cs",
+              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Models\\DTO\\UserDTO.cs",
+              "RelativeDocumentMoniker": "Fish_Manage\\Models\\DTO\\UserDTO.cs",
+              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Models\\DTO\\UserDTO.cs",
+              "RelativeToolTip": "Fish_Manage\\Models\\DTO\\UserDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T08:28:34.502Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Repository\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Fish_Manage\\Repository\\UserRepository.cs",
+              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Repository\\UserRepository.cs",
+              "RelativeToolTip": "Fish_Manage\\Repository\\UserRepository.cs",
+              "ViewState": "AQIAAFAAAAAAAAAAAAAgwGMAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T08:07:04.55Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Fish_Manage\\Controllers\\UserController.cs",
+              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Fish_Manage\\Controllers\\UserController.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAYwDQAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T08:06:47.738Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Program.cs",
+              "RelativeDocumentMoniker": "Fish_Manage\\Program.cs",
+              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Program.cs",
+              "RelativeToolTip": "Fish_Manage\\Program.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T07:36:34.886Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CloudinaryRepository.cs",
+              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Repository\\CloudinaryRepository.cs",
+              "RelativeDocumentMoniker": "Fish_Manage\\Repository\\CloudinaryRepository.cs",
+              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Repository\\CloudinaryRepository.cs",
+              "RelativeToolTip": "Fish_Manage\\Repository\\CloudinaryRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T07:36:00.44Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "OrderRepository.cs",
               "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Repository\\OrderRepository.cs",
               "RelativeDocumentMoniker": "Fish_Manage\\Repository\\OrderRepository.cs",
               "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Repository\\OrderRepository.cs",
               "RelativeToolTip": "Fish_Manage\\Repository\\OrderRepository.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAQwB4AAAAOAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T07:47:30.111Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-24T07:35:59.522Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ProductCreateDTO.cs",
+              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Models\\DTO\\Product\\ProductCreateDTO.cs",
+              "RelativeDocumentMoniker": "Fish_Manage\\Models\\DTO\\Product\\ProductCreateDTO.cs",
+              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Models\\DTO\\Product\\ProductCreateDTO.cs",
+              "RelativeToolTip": "Fish_Manage\\Models\\DTO\\Product\\ProductCreateDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T06:18:28.806Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Repository\\Repository.cs",
+              "RelativeDocumentMoniker": "Fish_Manage\\Repository\\Repository.cs",
+              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Repository\\Repository.cs",
+              "RelativeToolTip": "Fish_Manage\\Repository\\Repository.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAWwBIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T06:13:53.375Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FishProductAPIController.cs",
+              "DocumentMoniker": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Controllers\\FishProductAPIController.cs",
+              "RelativeDocumentMoniker": "Fish_Manage\\Controllers\\FishProductAPIController.cs",
+              "ToolTip": "D:\\CSharp_Projects\\Fish_Manage\\Fish_Manage\\Controllers\\FishProductAPIController.cs",
+              "RelativeToolTip": "Fish_Manage\\Controllers\\FishProductAPIController.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAAASwEwAAABVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T04:00:39.898Z"
             }
           ]
         },
