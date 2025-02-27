@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
 namespace Fish_Manage.Models
 {
@@ -9,20 +7,20 @@ namespace Fish_Manage.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int OrderId { get; set; }
-
-        public string? UserId { get; set; }
+        public string OrderId { get; set; }
+        [ForeignKey("UserId")]
+        public string UserId { get; set; }
 
         public DateTime OrderDate { get; set; }
 
-        public decimal? TotalAmount { get; set; }
+        public string TotalAmount { get; set; }
 
-        public string? Status { get; set; }
+        public string PaymentMethod { get; set; }
+        [ForeignKey("ProductId")]
+        public int? ProductId { get; set; }
 
-        public virtual ApplicationUser? User { get; set; }
+        public int? Quantity { get; set; }
 
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
-
-        public virtual ICollection<Transaction> Transactions { get; set; } = new List<Transaction>();
+        public decimal? UnitPrice { get; set; }
     }
 }

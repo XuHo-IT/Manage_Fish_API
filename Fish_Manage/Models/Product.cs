@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
 namespace Fish_Manage.Models
 {
@@ -22,9 +20,9 @@ namespace Fish_Manage.Models
         public string? Supplier { get; set; }
 
         public string ImageURl { get; set; }
+        public int? Quantity { get; set; }
 
-        public virtual ICollection<Inventory> Inventories { get; set; } = new List<Inventory>();
+        public DateTime? ExpirationDate { get; set; }
 
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
     }
 }

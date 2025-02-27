@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using Fish_Manage.Models;
-using Fish_Manage.Models.DTO;
 using Fish_Manage.Repository.DTO;
 using Fish_Manage.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -12,7 +10,7 @@ using System.Text;
 
 namespace Fish_Manage.Repository
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : Repository<ApplicationUser>, IUserRepository
     {
         private readonly FishManageContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -21,7 +19,7 @@ namespace Fish_Manage.Repository
         private string secretKey;
 
         public UserRepository(FishManageContext db, IConfiguration configuration,
-            UserManager<ApplicationUser> userManager, IMapper mapper, RoleManager<IdentityRole> roleManager)
+            UserManager<ApplicationUser> userManager, IMapper mapper, RoleManager<IdentityRole> roleManager) : base(db)
         {
             _db = db;
             _userManager = userManager;
@@ -100,7 +98,7 @@ namespace Fish_Manage.Repository
                         await _roleManager.CreateAsync(new IdentityRole("admin"));
                         await _roleManager.CreateAsync(new IdentityRole("customer"));
                     }
-                    await _userManager.AddToRoleAsync(user, "customer");
+                    await _userManager.AddToRoleAsync(user, "admin");
                     var userToReturn = _db.ApplicationUsers
                         .FirstOrDefault(u => u.UserName == registerationRequestDTO.UserName);
                     return _mapper.Map<UserDTO>(userToReturn);

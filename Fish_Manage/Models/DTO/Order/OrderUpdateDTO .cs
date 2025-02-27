@@ -4,17 +4,22 @@ namespace Fish_Manage.Models.DTO.Order
 {
     public class OrderUpdateDTO
     {
-        public int OrderId { get; set; }
         [Required]
-        [StringLength(50)]
-
-
+        public string OrderId { get; set; }
+        [Required]
+        public string UserId { get; set; }
+        [Required]
         public DateTime OrderDate { get; set; }
+        [Required]
+        public string TotalAmount { get; set; }
+        [Required]
+        public string PaymentMethod { get; set; }
+        [Required]
+        public int ProductId { get; set; }
+        [Required]
+        public int Quantity { get; set; }
+        [Required]
+        public decimal? UnitPrice { get; set; }
 
-        public decimal? TotalAmount { get; set; }
-
-        public string? Status { get; set; }
-
-        public virtual User? Customer { get; set; }
     }
 }

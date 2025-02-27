@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
 namespace Fish_Manage.Models
 {
@@ -28,6 +26,7 @@ namespace Fish_Manage.Models
 
         public int? RoleUser { get; set; }
 
-        public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+        [ForeignKey("OrderId")]
+        public string OrderId { get; set; }
     }
 }

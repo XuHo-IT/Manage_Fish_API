@@ -13,22 +13,22 @@ namespace Fish_Manage.Repository
             _context = context;
         }
 
-        public double GetMoneyPerTerm(int term)
+        public decimal GetMoneyPerTerm(int term)
         {
             switch (term)
             {
                 case 1:
-                    return (double)_context.Orders.Where(order => order.OrderDate.Date == DateTime.Now.Date)
-                    .Sum(order => order.TotalAmount);
+                    return _context.Orders.Where(order => order.OrderDate.Date == DateTime.Now.Date)
+                    .Sum(order => decimal.Parse(order.TotalAmount));
                 case 2:
-                    return (double)_context.Orders.Where(order => order.OrderDate.Month == DateTime.Now.Month && order.OrderDate.Year == DateTime.Now.Year)
-                    .Sum(order => order.TotalAmount);
+                    return _context.Orders.Where(order => order.OrderDate.Month == DateTime.Now.Month && order.OrderDate.Year == DateTime.Now.Year)
+                    .Sum(order => decimal.Parse(order.TotalAmount));
                 case 3:
-                    return (double)_context.Orders.Where(order => order.OrderDate.Year == DateTime.Now.Year)
-                    .Sum(order => order.TotalAmount);
+                    return _context.Orders.Where(order => order.OrderDate.Year == DateTime.Now.Year)
+                    .Sum(order => decimal.Parse(order.TotalAmount));
                 default:
-                    return 0.0;
-            }       
+                    return default(decimal);
+            }
         }
 
         public ApplicationUser UserBuyMost(int term)

@@ -1,5 +1,6 @@
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\appsettings.Development.json
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\appsettings.json
+D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Fish_Manage.staticwebassets.runtime.json
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Fish_Manage.exe
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Fish_Manage.deps.json
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Fish_Manage.runtimeconfig.json
@@ -45,6 +46,7 @@ D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Microsoft.Win32.Syst
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Mono.TextTemplating.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\RestSharp.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -148,4 +150,3 @@ D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\refint\Fish_Manage.d
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\Fish_Manage.pdb
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\Fish_Manage.genruntimeconfig.cache
 D:\CSharp_Projects\Fish_Manage\Fish_Manage\obj\Debug\net8.0\ref\Fish_Manage.dll
-D:\CSharp_Projects\Fish_Manage\Fish_Manage\bin\Debug\net8.0\Fish_Manage.staticwebassets.runtime.json

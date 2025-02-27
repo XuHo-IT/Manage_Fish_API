@@ -4,11 +4,10 @@ namespace Fish_Manage.Models.DTO.Product
 {
     public class ProductDTO
     {
-        public int ProductId { get; set; }
-
-        public int? OrderId { get; set; }
         [Required]
-        [StringLength(50)]
+        public int ProductId { get; set; }
+        [Required]
+        public int OrderId { get; set; }
         public string ProductName { get; set; }
 
         public decimal? Price { get; set; }

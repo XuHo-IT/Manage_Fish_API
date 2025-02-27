@@ -4,16 +4,20 @@ namespace Fish_Manage.Models.DTO.Order
 {
     public class OrderDTO
     {
-        public int OrderId { get; set; }
-
-        public string? UserId { get; set; }
+        public string OrderId { get; set; }
         [Required]
-        [StringLength(50)]
-
+        public string UserId { get; set; }
+        [Required]
         public DateTime OrderDate { get; set; }
-
-        public decimal? TotalAmount { get; set; }
-
-        public string? Status { get; set; }
+        [Required]
+        public string TotalAmount { get; set; }
+        [Required]
+        public string PaymentMethod { get; set; }
+        [Required]
+        public int ProductId { get; set; }
+        [Required]
+        public int Quantity { get; set; }
+        [Required]
+        public decimal? UnitPrice { get; set; }
     }
 }

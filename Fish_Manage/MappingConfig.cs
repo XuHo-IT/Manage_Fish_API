@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Fish_Manage.Models;
 using Fish_Manage.Models.DTO.Order;
-using Fish_Manage.Models.DTO.OrderDetail;
 using Fish_Manage.Models.DTO.Product;
 using Fish_Manage.Repository.DTO;
 
@@ -24,7 +23,6 @@ namespace Fish_Manage
             CreateMap<Order, OrderUpdateDTO>().ReverseMap();
 
             CreateMap<OrderCreateDTO, Order>();
-            CreateMap<OrderDetailCreateDTO, OrderDetail>();
 
             CreateMap<ApplicationUser, UserDTO>();
 

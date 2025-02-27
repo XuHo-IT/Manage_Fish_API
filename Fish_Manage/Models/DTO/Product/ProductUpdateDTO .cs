@@ -4,9 +4,8 @@ namespace Fish_Manage.Models.DTO.Product
 {
     public class ProductUpdateDTO
     {
-        public int ProductId { get; set; }
         [Required]
-        [StringLength(50)]
+        public int ProductId { get; set; }
         public string ProductName { get; set; }
 
         public decimal? Price { get; set; }
@@ -16,7 +15,6 @@ namespace Fish_Manage.Models.DTO.Product
         public string Description { get; set; }
 
         public string Supplier { get; set; }
-        public string ImageURl { get; set; }
 
     }
 }

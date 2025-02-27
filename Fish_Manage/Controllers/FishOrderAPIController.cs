@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
 using Fish_Manage.Models;
 using Fish_Manage.Models.DTO.Order;
-using Fish_Manage.Models.DTO.Product;
 using Fish_Manage.Repository.DTO;
 using Fish_Manage.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace Fish_Manage.Controllers
@@ -45,11 +43,11 @@ namespace Fish_Manage.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<APIResponse>> GetOrder(int id)
+        public async Task<ActionResult<APIResponse>> GetOrder(string id)
         {
             try
             {
-                if (id == 0)
+                if (id == "")
                 {
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     return BadRequest(_response);
@@ -73,7 +71,6 @@ namespace Fish_Manage.Controllers
             return _response;
         }
         [HttpPost("CreateOrder")]
-        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -82,7 +79,7 @@ namespace Fish_Manage.Controllers
             try
             {
 
-                    if (createDTO == null)
+                if (createDTO == null)
                 {
                     return BadRequest(createDTO);
                 }
@@ -109,11 +106,11 @@ namespace Fish_Manage.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpDelete("{id:int}", Name = "DeleteOrder")]
-        public async Task<ActionResult<APIResponse>> DeleteOrder(int id)
+        public async Task<ActionResult<APIResponse>> DeleteOrder(string id)
         {
             try
             {
-                if (id == 0)
+                if (id == "")
                 {
                     return BadRequest();
                 }
@@ -139,7 +136,7 @@ namespace Fish_Manage.Controllers
         [HttpPut("{id:int}", Name = "UpdateOrder")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<APIResponse>> UpdateVilla(int id, [FromBody] OrderUpdateDTO updateDTO)
+        public async Task<ActionResult<APIResponse>> UpdateOrder(string id, [FromBody] OrderUpdateDTO updateDTO)
         {
             try
             {
@@ -168,7 +165,7 @@ namespace Fish_Manage.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public double GetMoneyPerYear(int term)
+        public decimal GetMoneyPerYear(int term)
         {
             switch (term)
             {
@@ -179,7 +176,7 @@ namespace Fish_Manage.Controllers
                 case 3:
                     return _dbOrder.GetMoneyPerTerm(3);
                 default:
-                    return 0.0;
+                    return default(decimal);
 
             }
         }

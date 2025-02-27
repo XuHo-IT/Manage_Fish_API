@@ -74,7 +74,7 @@ namespace Fish_Manage.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<APIResponse>> CreateProduct([FromForm] ProductCreateDTO createDTO, IFormFile imageFile, [FromServices] CloudinaryRepository cloudinaryService)
+        public async Task<ActionResult<APIResponse>> CreateProduct([FromForm] ProductCreateDTO createDTO, IFormFile imageFile, [FromServices] CloudinaryService cloudinaryService)
         {
             try
             {
@@ -146,29 +146,69 @@ namespace Fish_Manage.Controllers
         [HttpPut("{id:int}", Name = "UpdateProduct")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<APIResponse>> UpdateVilla(int id, [FromBody] ProductUpdateDTO updateDTO)
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<APIResponse>> UpdateProduct(
+        int id,
+        [FromForm] ProductUpdateDTO updateDTO,  // ✅ Fix: Ensure correct data binding for multipart/form-data
+        IFormFile imageFile,
+        [FromServices] CloudinaryService cloudinaryService)
         {
             try
             {
                 if (updateDTO == null || id != updateDTO.ProductId)
                 {
-                    return BadRequest();
+                    return BadRequest(new APIResponse
+                    {
+                        IsSuccess = false,
+                        StatusCode = HttpStatusCode.BadRequest,
+                        ErrorMessages = new List<string> { "Invalid product data." }
+                    });
                 }
 
-                Product model = _mapper.Map<Product>(updateDTO);
+                var existingProduct = await _dbProduct.GetAsync(p => p.ProductId == id);
+                if (existingProduct == null)
+                {
+                    return NotFound(new APIResponse
+                    {
+                        IsSuccess = false,
+                        StatusCode = HttpStatusCode.NotFound,
+                        ErrorMessages = new List<string> { "Product not found." }
+                    });
+                }
 
-                await _dbProduct.UpdateAsync(model);
-                _response.StatusCode = HttpStatusCode.NoContent;
-                _response.IsSuccess = true;
-                return Ok(_response);
+                // Preserve existing image if no new file is uploaded
+                string imageUrl = existingProduct.ImageURl;
+                if (imageFile != null)
+                {
+                    imageUrl = await cloudinaryService.UploadImageAsync(imageFile);
+                }
+
+                // Map updated fields to the existing product
+                _mapper.Map(updateDTO, existingProduct);
+                existingProduct.ImageURl = imageUrl;
+
+                await _dbProduct.UpdateAsync(existingProduct);
+                _response.Result = _mapper.Map<ProductDTO>(existingProduct);
+
+                return Ok(new APIResponse
+                {
+                    IsSuccess = true,
+                    StatusCode = HttpStatusCode.NoContent
+                });
             }
             catch (Exception ex)
             {
-                _response.IsSuccess = false;
-                _response.ErrorMessages
-                     = new List<string>() { ex.ToString() };
+                return StatusCode(500, new APIResponse
+                {
+                    IsSuccess = false,
+                    StatusCode = HttpStatusCode.InternalServerError,
+                    ErrorMessages = new List<string> { ex.Message }
+                });
             }
-            return _response;
         }
+
+
+
+
     }
 }

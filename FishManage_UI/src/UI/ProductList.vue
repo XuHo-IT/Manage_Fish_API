@@ -47,8 +47,13 @@
     </button>
 
     <router-view></router-view>
-    <Modal :visible="isModalVisible" @close="hideCreateProduct">
-      <CreateProduct />
+    <Modal :visible="isModalVisible" @close="hideModal">
+      <template v-if="isEditMode">
+        <EditProduct :product="currentProduct" />
+      </template>
+      <template v-else>
+        <CreateProduct />
+      </template>
     </Modal>
 
     <div class="row">
@@ -109,6 +114,14 @@
                                   <use xlink:href="#trash"></use>
                                 </svg>
                               </a>
+
+                              <button
+                                v-if="isAuthenticated && isAdmin"
+                                @click="showEditProduct(product)"
+                                class="btn btn-danger"
+                              >
+                                Edit Product
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -132,11 +145,13 @@
 </style>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, onBeforeUnmount } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import Modal from "./Modal.vue";
 import CreateProduct from "./CreateProduct.vue";
+import EditProduct from "./EditProduct.vue";
+
 
 const products = ref([]);
 const isAuthenticated = ref(!!localStorage.getItem("token"));
@@ -144,6 +159,8 @@ const isAdmin = ref(false);
 const userId = ref(null);
 const isModalVisible = ref(false);
 const isCartVisible = ref(false);
+const isEditMode = ref(false);
+const currentProduct = ref(null);
 const api = "https://localhost:7229/api/FishProductAPI";
 const cart = ref([]);
 
@@ -210,7 +227,6 @@ const getProductData = () => {
       console.error("Error fetching data:", error);
     });
 };
-
 const deleteProduct = (productId) => {
   const token = localStorage.getItem("token");
   axios
@@ -240,18 +256,59 @@ const checkout = () => {
 
   window.location.href = "checkout.html";
 };
+const trackView = async () => {
+  try {
+    await axios.post("https://localhost:7229/api/Analytics/TrackView");
+  } catch (error) {
+    console.error("Error tracking view:", error);
+  }
+};
+
+const startSession = async () => {
+  try {
+    await axios.post("https://localhost:7229/api/Analytics/StartSession");
+  } catch (error) {
+    console.error("Error starting session:", error);
+  }
+};
+
+const endSession = async () => {
+  try {
+    await axios.post("https://localhost:7229/api/Analytics/EndSessions");
+  } catch (error) {
+    console.error("Error ending session:", error);
+  }
+};
+
 
 onMounted(() => {
+  trackView();
   loadAuthState();
   getProductData();
+  startSession();
+  window.addEventListener("beforeunload", endSession);
+});
+onBeforeUnmount(() => {
+  window.removeEventListener("beforeunload", endSession);
 });
 
+
 const showCreateProduct = () => {
+  isEditMode.value = false;
+  currentProduct.value = null; // Reset current product
   isModalVisible.value = true;
   document.querySelector(".swiper").style.display = "none";
 };
 
-const hideCreateProduct = () => {
+const showEditProduct = (product) => {
+  isEditMode.value = true;
+  console.log(product);
+  currentProduct.value = product; // Set current product for editing
+  isModalVisible.value = true;
+  document.querySelector(".swiper").style.display = "none";
+};
+
+const hideModal = () => {
   isModalVisible.value = false;
   document.querySelector(".swiper").style.display = "block";
 };

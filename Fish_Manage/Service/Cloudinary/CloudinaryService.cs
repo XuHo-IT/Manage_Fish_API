@@ -1,12 +1,11 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using Microsoft.Extensions.Configuration;
 
-public class CloudinaryRepository
+public class CloudinaryService
 {
     private readonly Cloudinary _cloudinary;
 
-    public CloudinaryRepository(IConfiguration configuration)
+    public CloudinaryService(IConfiguration configuration)
     {
         var cloudinaryAccount = new Account(
             configuration["Cloudinary:CloudName"],

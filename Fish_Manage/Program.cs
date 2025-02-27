@@ -1,7 +1,10 @@
-using Fish_Manage.Models;
-using Fish_Manage.Repository.IRepository;
-using Fish_Manage.Repository;
 using Fish_Manage;
+using Fish_Manage.Models;
+using Fish_Manage.Models.Momo;
+using Fish_Manage.Repository;
+using Fish_Manage.Repository.IRepository;
+using Fish_Manage.Service.IService;
+using Fish_Manage.Service.Momo;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +13,12 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+//Momo
+builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("MomoAPI"));
+builder.Services.AddScoped<IMomoService, MomoService>();
+builder.Services.AddHttpContextAccessor();
 
 // Configure DbContext
 builder.Services.AddDbContext<FishManageContext>(options =>
@@ -24,11 +33,13 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 builder.Services.AddResponseCaching();
 
 
+
 // Configure AutoMapper, Repositories, and Services
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-builder.Services.AddSingleton<CloudinaryRepository>();
+//Cloudinary
+builder.Services.AddSingleton<CloudinaryService>();
 
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddAutoMapper(typeof(MappingConfig));
@@ -52,7 +63,8 @@ builder.Services.AddAuthentication(x =>
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-    .AddJwtBearer(x => {
+    .AddJwtBearer(x =>
+    {
         x.RequireHttpsMetadata = false;
         x.SaveToken = true;
         x.TokenValidationParameters = new TokenValidationParameters
@@ -108,6 +120,8 @@ builder.Services.AddCors(options =>
                    .AllowAnyHeader();
         });
 });
+
+
 
 var app = builder.Build();
 

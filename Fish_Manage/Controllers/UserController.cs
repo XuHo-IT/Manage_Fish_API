@@ -1,4 +1,6 @@
-﻿using Fish_Manage.Repository.DTO;
+﻿using AutoMapper;
+using Fish_Manage.Models;
+using Fish_Manage.Repository.DTO;
 using Fish_Manage.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -13,13 +15,27 @@ namespace Fish_Manage.Controllers
     {
         private readonly IUserRepository _userRepo;
         protected APIResponse _response;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserRepository userRepo)
+        public UserController(IUserRepository userRepo, IMapper mapper)
         {
             _userRepo = userRepo;
             _response = new();
+            _mapper = mapper;
         }
 
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<APIResponse>> GetUsers()
+        {
+            IEnumerable<ApplicationUser> usertList;
+            usertList = await _userRepo.GetAllAsync();
+            _response.Result = _mapper.Map<List<UserDTO>>(usertList);
+            _response.StatusCode = HttpStatusCode.OK;
+            return Ok(_response);
+        }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDTO model)
