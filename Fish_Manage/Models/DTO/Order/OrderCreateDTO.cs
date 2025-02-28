@@ -13,7 +13,7 @@ namespace Fish_Manage.Models.DTO.Order
         [Required]
         public string PaymentMethod { get; set; }
         [Required]
-        public int ProductId { get; set; }
+        public string ProductId { get; set; }
         [Required]
         public int Quantity { get; set; }
         [Required]

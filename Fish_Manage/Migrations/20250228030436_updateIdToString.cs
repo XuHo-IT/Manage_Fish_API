@@ -6,11 +6,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Fish_Manage.Migrations
 {
     /// <inheritdoc />
-    public partial class updateDbAgain : Migration
+    public partial class updateIdToString : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Analytics",
+                columns: table => new
+                {
+                    AnalyticsId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TotalViews = table.Column<int>(type: "int", nullable: false),
+                    ActiveSessions = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Analytics", x => x.AnalyticsId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -55,8 +69,7 @@ namespace Fish_Manage.Migrations
                 name: "Products",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: true),
                     Category = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -186,7 +199,7 @@ namespace Fish_Manage.Migrations
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     TotalAmount = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: true),
+                    ProductId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: true),
                     UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
@@ -249,6 +262,9 @@ namespace Fish_Manage.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Analytics");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

@@ -1,8 +1,10 @@
-﻿using Fish_Manage.Models.Momo;
+﻿using Fish_Manage.Models;
+using Fish_Manage.Models.Momo;
 using Fish_Manage.Service.IService;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using RestSharp;
+using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -16,6 +18,12 @@ namespace Fish_Manage.Service.Momo
         {
             _options = options;
         }
+
+        public Task CreateAsync(Order entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<MomoCreatePaymentResponseModel> CreatePaymentMomo(OrderInfoModel model)
         {
             if (_options == null || _options.Value == null)
@@ -67,20 +75,47 @@ namespace Fish_Manage.Service.Momo
             var paymentResponse = JsonConvert.DeserializeObject<MomoCreatePaymentResponseModel>(response.Content);
             return paymentResponse;
         }
-        public MomoExecuteResponseModel PaymentExecuteAsync(IQueryCollection collection)
-        {
-            collection.TryGetValue("amount", out var amount);
-            collection.TryGetValue("orderInfo", out var orderInfo);
-            collection.TryGetValue("orderId", out var orderId);
 
-            return new MomoExecuteResponseModel
+        public Task<List<Order>> GetAllAsync(Expression<Func<Order, bool>>? filter = null, string? includeProperties = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Order> GetAsync(Expression<Func<Order, bool>> filter = null, bool tracked = true, string? includeProperties = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<MomoExecuteResponseModel> PaymentExecuteAsync(IQueryCollection collection)
+        {
+            // Log the entire request collection for debugging
+            Console.WriteLine($"Request Query: {collection}");
+
+            // Extract values safely
+            string amount = collection.ContainsKey("amount") ? collection["amount"].ToString() : null;
+            string orderId = collection.ContainsKey("orderId") ? collection["orderId"].ToString() : null;
+            string orderInfo = collection.ContainsKey("orderInfo") ? collection["orderInfo"].ToString() : null;
+
+            // Log extracted values
+            Console.WriteLine($"Extracted Amount: {amount}, OrderId: {orderId}, OrderInfo: {orderInfo}");
+
+            return await Task.FromResult(new MomoExecuteResponseModel
             {
                 Amount = amount,
                 OrderId = orderId,
                 OrderInfo = orderInfo
-            };
+            });
         }
 
+        public Task RemoveAsync(Order entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SaveAsync()
+        {
+            throw new NotImplementedException();
+        }
 
         private string ComputeHmacSha256(string message, string secretKey)
         {

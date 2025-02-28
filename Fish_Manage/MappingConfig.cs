@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Fish_Manage.Models;
+using Fish_Manage.Models.DTO.Coupon;
 using Fish_Manage.Models.DTO.Order;
 using Fish_Manage.Models.DTO.Product;
 using Fish_Manage.Repository.DTO;
@@ -21,6 +22,13 @@ namespace Fish_Manage
 
             CreateMap<Order, OrderCreateDTO>().ReverseMap();
             CreateMap<Order, OrderUpdateDTO>().ReverseMap();
+
+
+            CreateMap<CouponModel, CouponModelDTO>();
+            CreateMap<CouponModelDTO, CouponModel>();
+
+            CreateMap<CouponModel, CouponModelCreateDTO>().ReverseMap();
+            CreateMap<CouponModel, CouponModelUpdateDTO>().ReverseMap();
 
             CreateMap<OrderCreateDTO, Order>();
 

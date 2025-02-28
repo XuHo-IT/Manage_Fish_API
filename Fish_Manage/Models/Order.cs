@@ -17,7 +17,7 @@ namespace Fish_Manage.Models
 
         public string PaymentMethod { get; set; }
         [ForeignKey("ProductId")]
-        public int? ProductId { get; set; }
+        public string? ProductId { get; set; }
 
         public int? Quantity { get; set; }
 

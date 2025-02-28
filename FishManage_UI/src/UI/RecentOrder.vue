@@ -28,7 +28,7 @@
 <script>
 import axios from "axios";
 import { ref, onMounted } from "vue";
-
+//get token and authorize
 axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");

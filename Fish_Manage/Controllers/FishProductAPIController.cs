@@ -36,17 +36,74 @@ namespace Fish_Manage.Controllers
             _response.StatusCode = HttpStatusCode.OK;
             return Ok(_response);
         }
-        [HttpGet("{id:int}", Name = "GetProduct")]
+        [HttpGet("GetProductAsc")]
+        //[ResponseCache(CacheProfileName = "Default30")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<APIResponse>> GetProductAsc(decimal min, decimal max)
+        {
+            IEnumerable<Product> productList = await _dbProduct.GetProductAsc(min, max);
+            _response.Result = _mapper.Map<List<ProductDTO>>(productList);
+            _response.StatusCode = HttpStatusCode.OK;
+            return Ok(_response);
+        }
+
+        [HttpGet("GetProductDesc")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<APIResponse>> GetProductDesc(decimal min, decimal max)
+        {
+            IEnumerable<Product> productList = await _dbProduct.GetProductDesc(min, max);
+            _response.Result = _mapper.Map<List<ProductDTO>>(productList);
+            _response.StatusCode = HttpStatusCode.OK;
+            return Ok(_response);
+        }
+        [HttpGet("GetProductOldest")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<APIResponse>> GetProductOldest(decimal min, decimal max)
+        {
+            IEnumerable<Product> productList = await _dbProduct.GetProductOldest(min, max);
+            _response.Result = _mapper.Map<List<ProductDTO>>(productList);
+            _response.StatusCode = HttpStatusCode.OK;
+            return Ok(_response);
+        }
+        [HttpGet("GetProductNewest")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<APIResponse>> GetProductNewest(decimal min, decimal max)
+        {
+            IEnumerable<Product> productList = await _dbProduct.GetProductNewest(min, max);
+            _response.Result = _mapper.Map<List<ProductDTO>>(productList);
+            _response.StatusCode = HttpStatusCode.OK;
+            return Ok(_response);
+        }
+        [HttpGet("GetProductInRange")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<APIResponse>> GetProductInRange(decimal min, decimal max)
+        {
+            IEnumerable<Product> productList = await _dbProduct.GetProductInRange(min, max);
+            _response.Result = _mapper.Map<List<ProductDTO>>(productList);
+            _response.StatusCode = HttpStatusCode.OK;
+            return Ok(_response);
+        }
+        [HttpGet("{id}", Name = "GetProduct")]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<APIResponse>> GetProduct(int id)
+        public async Task<ActionResult<APIResponse>> GetProduct(string id)
         {
             try
             {
-                if (id == 0)
+                if (id == "")
                 {
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     return BadRequest(_response);
@@ -97,7 +154,7 @@ namespace Fish_Manage.Controllers
                 await _dbProduct.CreateAsync(product);
                 _response.Result = _mapper.Map<ProductDTO>(product);
                 _response.StatusCode = HttpStatusCode.Created;
-                return CreatedAtRoute("GetProduct", new { id = product.ProductId }, _response);
+                return StatusCode(201, _response);
             }
             catch (Exception ex)
             {
@@ -115,12 +172,13 @@ namespace Fish_Manage.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpDelete("{id:int}", Name = "DeleteProuct")]
-        public async Task<ActionResult<APIResponse>> DeleteProduct(int id)
+        [HttpDelete("{id}", Name = "DeleteProduct")]
+
+        public async Task<ActionResult<APIResponse>> DeleteProduct(string id)
         {
             try
             {
-                if (id == 0)
+                if (id == "")
                 {
                     return BadRequest();
                 }
@@ -143,13 +201,13 @@ namespace Fish_Manage.Controllers
             return _response;
         }
         [Authorize(Roles = "admin")]
-        [HttpPut("{id:int}", Name = "UpdateProduct")]
+        [HttpPut("{id}", Name = "UpdateProduct")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<APIResponse>> UpdateProduct(
-        int id,
-        [FromForm] ProductUpdateDTO updateDTO,  // ✅ Fix: Ensure correct data binding for multipart/form-data
+        string id,
+        [FromForm] ProductUpdateDTO updateDTO,
         IFormFile imageFile,
         [FromServices] CloudinaryService cloudinaryService)
         {
@@ -176,14 +234,11 @@ namespace Fish_Manage.Controllers
                     });
                 }
 
-                // Preserve existing image if no new file is uploaded
                 string imageUrl = existingProduct.ImageURl;
                 if (imageFile != null)
                 {
                     imageUrl = await cloudinaryService.UploadImageAsync(imageFile);
                 }
-
-                // Map updated fields to the existing product
                 _mapper.Map(updateDTO, existingProduct);
                 existingProduct.ImageURl = imageUrl;
 

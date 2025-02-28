@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fish_Manage.Migrations
 {
     [DbContext(typeof(FishManageContext))]
-    [Migration("20250227071927_removeUserandaddAnalyticstoDb")]
-    partial class removeUserandaddAnalyticstoDb
+    [Migration("20250228030436_updateIdToString")]
+    partial class updateIdToString
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -129,8 +129,8 @@ namespace Fish_Manage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
+                    b.Property<string>("ProductId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Quantity")
                         .HasColumnType("int");
@@ -155,11 +155,9 @@ namespace Fish_Manage.Migrations
 
             modelBuilder.Entity("Fish_Manage.Models.Product", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<string>("ProductId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");

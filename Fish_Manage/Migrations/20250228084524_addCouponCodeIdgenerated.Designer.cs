@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fish_Manage.Migrations
 {
     [DbContext(typeof(FishManageContext))]
-    [Migration("20250227031804_updateDbAgain")]
-    partial class updateDbAgain
+    [Migration("20250228084524_addCouponCodeIdgenerated")]
+    partial class addCouponCodeIdgenerated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,25 @@ namespace Fish_Manage.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Fish_Manage.Models.Analytics", b =>
+                {
+                    b.Property<int>("AnalyticsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AnalyticsId"));
+
+                    b.Property<int>("ActiveSessions")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TotalViews")
+                        .HasColumnType("int");
+
+                    b.HasKey("AnalyticsId");
+
+                    b.ToTable("Analytics");
+                });
 
             modelBuilder.Entity("Fish_Manage.Models.ApplicationUser", b =>
                 {
@@ -110,8 +129,8 @@ namespace Fish_Manage.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProductId")
-                        .HasColumnType("int");
+                    b.Property<string>("ProductId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Quantity")
                         .HasColumnType("int");
@@ -136,11 +155,9 @@ namespace Fish_Manage.Migrations
 
             modelBuilder.Entity("Fish_Manage.Models.Product", b =>
                 {
-                    b.Property<int>("ProductId")
+                    b.Property<string>("ProductId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");

@@ -5,7 +5,7 @@ import CreateProduct from "@/UI/CreateProduct.vue";
 import EditProduct from "@/UI/EditProduct.vue";
 import CheckOut from "@/UI/CheckOut.vue";
 import CallBack from "@/UI/CallBack.vue";
-
+import CreateCoupon from "@/UI/CreateCoupon.vue";
 
 const routes = [
   { path: "/", component: ProductList },
@@ -13,7 +13,8 @@ const routes = [
   { path: "/create", component: CreateProduct },
   { path: "/edit", component: EditProduct },
   { path: "/checkout", component: CheckOut },
-  { path: '/CallBack',name: 'CallBack', component: CallBack,}
+  { path: "/callBack", name: "CallBack", component: CallBack },
+  { path: "/createCoupon", component: CreateCoupon },
 ];
 
 const router = createRouter({

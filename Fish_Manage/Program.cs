@@ -5,6 +5,7 @@ using Fish_Manage.Repository;
 using Fish_Manage.Repository.IRepository;
 using Fish_Manage.Service.IService;
 using Fish_Manage.Service.Momo;
+using Fish_Manage.Service.Payment;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +38,8 @@ builder.Services.AddResponseCaching();
 // Configure AutoMapper, Repositories, and Services
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IPaymentCODService, PaymentCODService>();
+builder.Services.AddScoped<ICouponModelRepository, CouponModelRepository>();
 
 //Cloudinary
 builder.Services.AddSingleton<CloudinaryService>();

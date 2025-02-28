@@ -120,7 +120,7 @@
 
 <script>
 import api from "@/js/api_auth.js"; // Axios instance
-import { ref } from "vue";
+
 
 export default {
   data() {
@@ -157,10 +157,6 @@ export default {
         this.isAdmin = response.data.result.role === "admin";
         this.isAuthenticated = true;
         this.userId = response.data.result.user.id;
-
-        // Print isAdmin and userId to the console
-        console.log("isAdmin:", this.isAdmin);
-        console.log("userId:", this.userId);
 
         window.history.pushState({}, "", `?userId=${this.userId}`);
         this.closeModal();

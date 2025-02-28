@@ -98,7 +98,7 @@ namespace Fish_Manage.Repository
                         await _roleManager.CreateAsync(new IdentityRole("admin"));
                         await _roleManager.CreateAsync(new IdentityRole("customer"));
                     }
-                    await _userManager.AddToRoleAsync(user, "admin");
+                    await _userManager.AddToRoleAsync(user, registerationRequestDTO.Role);
                     var userToReturn = _db.ApplicationUsers
                         .FirstOrDefault(u => u.UserName == registerationRequestDTO.UserName);
                     return _mapper.Map<UserDTO>(userToReturn);

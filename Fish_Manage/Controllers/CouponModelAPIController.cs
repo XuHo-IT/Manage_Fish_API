@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Fish_Manage.Models;
-using Fish_Manage.Models.DTO.Order;
+using Fish_Manage.Models.DTO.Coupon;
 using Fish_Manage.Repository.DTO;
 using Fish_Manage.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
@@ -9,40 +9,42 @@ using System.Net;
 
 namespace Fish_Manage.Controllers
 {
-    [Route("api/FishOrderAPI")]
+    [Route("api/CouponModel")]
     [ApiController]
-    public class FishOrderAPIController : ControllerBase
+    public class CouponModelAPIController : ControllerBase
     {
-        protected APIResponse _response;
-        private readonly IOrderRepository _dbOrder;
+
+        private readonly FishManageContext _context;
+        private readonly ICouponModelRepository _couponModelRepository;
+        private readonly APIResponse _response;
         private readonly IMapper _mapper;
 
-        public FishOrderAPIController(IOrderRepository dbOrder, IMapper mapper)
+        public CouponModelAPIController(FishManageContext context, ICouponModelRepository couponModelRepository, IMapper mapper)
         {
-            _response = new();
-            _dbOrder = dbOrder;
+            _context = context;
+            _couponModelRepository = couponModelRepository;
             _mapper = mapper;
+            _response = new APIResponse();
         }
         [HttpGet]
-        [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<APIResponse>> GetOrders()
+        public async Task<ActionResult<APIResponse>> GetCoupons()
         {
-            IEnumerable<Order> productList;
-            productList = await _dbOrder.GetAllAsync();
-            _response.Result = _mapper.Map<List<OrderDTO>>(productList);
+            IEnumerable<CouponModel> couponList;
+            couponList = await _couponModelRepository.GetAllAsync();
+            _response.Result = _mapper.Map<List<CouponModelDTO>>(couponList);
             _response.StatusCode = HttpStatusCode.OK;
             return Ok(_response);
         }
-        [HttpGet("{id}", Name = "GetOrder")]
+        [HttpGet("{id}", Name = "GetCoupon")]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<APIResponse>> GetOrder(string id)
+        public async Task<ActionResult<APIResponse>> GetCoupon(string id)
         {
             try
             {
@@ -51,13 +53,13 @@ namespace Fish_Manage.Controllers
                     _response.StatusCode = HttpStatusCode.BadRequest;
                     return BadRequest(_response);
                 }
-                var order = await _dbOrder.GetAsync(u => u.OrderId == id);
-                if (order == null)
+                var coupon = await _couponModelRepository.GetAsync(u => u.CouponId == id);
+                if (coupon == null)
                 {
                     _response.StatusCode = HttpStatusCode.NotFound;
                     return NotFound(_response);
                 }
-                _response.Result = _mapper.Map<OrderDTO>(order);
+                _response.Result = _mapper.Map<List<CouponModelDTO>>(coupon);
                 _response.StatusCode = HttpStatusCode.OK;
                 return Ok(_response);
             }
@@ -69,14 +71,42 @@ namespace Fish_Manage.Controllers
             }
             return _response;
         }
+        [HttpPost("CreateCoupon")]
+        public async Task<ActionResult<APIResponse>> CreateCoupon(CouponModelCreateDTO createCoupon)
+        {
+            try
+            {
+                if (createCoupon == null)
+                {
+                    return BadRequest(new APIResponse { IsSuccess = false, ErrorMessages = new List<string> { "Invalid coupon data" } });
+                }
 
+                CouponModel coupon = _mapper.Map<CouponModel>(createCoupon);
+                await _couponModelRepository.CreateAsync(coupon);
+
+                _response.Result = _mapper.Map<CouponModelDTO>(coupon);
+                _response.StatusCode = HttpStatusCode.Created;
+
+                return StatusCode(201, _response);
+
+
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string> { ex.Message };
+                _response.StatusCode = HttpStatusCode.InternalServerError;
+
+                return StatusCode(500, _response);
+            }
+        }
         [Authorize(Roles = "admin")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpDelete("{id}", Name = "DeleteOrder")]
+        [HttpDelete("{id:int}", Name = "DeleteCoupon")]
         public async Task<ActionResult<APIResponse>> DeleteOrder(string id)
         {
             try
@@ -85,12 +115,12 @@ namespace Fish_Manage.Controllers
                 {
                     return BadRequest();
                 }
-                var order = await _dbOrder.GetAsync(u => u.OrderId == id);
+                var order = await _couponModelRepository.GetAsync(u => u.CouponId == id);
                 if (order == null)
                 {
                     return NotFound();
                 }
-                await _dbOrder.RemoveAsync(order);
+                await _couponModelRepository.RemoveAsync(order);
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
                 return Ok(_response);
@@ -104,21 +134,21 @@ namespace Fish_Manage.Controllers
             return _response;
         }
         [Authorize(Roles = "admin")]
-        [HttpPut("{id}", Name = "UpdateOrder")]
+        [HttpPut("{id:int}", Name = "UpdateCoupon")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<APIResponse>> UpdateOrder(string id, [FromBody] OrderUpdateDTO updateDTO)
+        public async Task<ActionResult<APIResponse>> UpdateOrder(string id, [FromBody] CouponModelUpdateDTO updateCoupon)
         {
             try
             {
-                if (updateDTO == null || id != updateDTO.OrderId)
+                if (updateCoupon == null || id != updateCoupon.CouponId)
                 {
                     return BadRequest();
                 }
 
-                Order model = _mapper.Map<Order>(updateDTO);
+                CouponModel model = _mapper.Map<CouponModel>(updateCoupon);
 
-                await _dbOrder.UpdateAsync(model);
+                await _couponModelRepository.UpdateAsync(model);
                 _response.StatusCode = HttpStatusCode.NoContent;
                 _response.IsSuccess = true;
                 return Ok(_response);
@@ -130,47 +160,6 @@ namespace Fish_Manage.Controllers
                      = new List<string>() { ex.ToString() };
             }
             return _response;
-        }
-        [HttpPost("GetMoneyPerYear")]
-        [Authorize(Roles = "admin")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public decimal GetMoneyPerYear(int term)
-        {
-            switch (term)
-            {
-                case 1:
-                    return _dbOrder.GetMoneyPerTerm(1);
-                case 2:
-                    return _dbOrder.GetMoneyPerTerm(2);
-                case 3:
-                    return _dbOrder.GetMoneyPerTerm(3);
-                default:
-                    return default(decimal);
-
-            }
-        }
-
-        [HttpPost("GetMostMoneyBill")]
-        [Authorize(Roles = "admin")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ApplicationUser GetMostMoneyBill(int term)
-        {
-            switch (term)
-            {
-                case 1:
-                    return _dbOrder.UserBuyMost(1);
-                case 2:
-                    return _dbOrder.UserBuyMost(2);
-                case 3:
-                    return _dbOrder.UserBuyMost(3);
-                default:
-                    return null;
-
-            }
         }
     }
 }

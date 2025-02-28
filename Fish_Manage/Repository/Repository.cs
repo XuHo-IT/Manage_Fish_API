@@ -1,7 +1,6 @@
 ﻿using Fish_Manage.Models;
 using Fish_Manage.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 using System.Linq.Expressions;
 
 namespace Fish_Manage.Repository

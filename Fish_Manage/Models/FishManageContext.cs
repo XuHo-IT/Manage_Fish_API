@@ -14,6 +14,7 @@ namespace Fish_Manage.Models
         {
         }
 
+        public DbSet<CouponModel> CouponModels { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Analytics> Analytics { get; set; }
 

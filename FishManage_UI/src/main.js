@@ -7,6 +7,7 @@ import EditProduct from "./UI/EditProduct.vue";
 import Checkout from "./UI/Checkout.vue";
 import TotalReport from "./UI/TotalReport.vue";
 import RecentOrder from "./UI/RecentOrder.vue";
+import CreateCoupon from "./UI/CreateCoupon.vue";
 import ViewResponse from "./UI/View_Response.vue";
 import VueApexCharts from "vue3-apexcharts";
 import router from "./router";
@@ -43,4 +44,5 @@ const viewResponse = createApp(ViewResponse);
 viewResponse.use(VueApexCharts);
 viewResponse.mount("#view-response");
 
-
+const createCoupon = createApp(CreateCoupon);
+createCoupon.mount("#create-coupon");

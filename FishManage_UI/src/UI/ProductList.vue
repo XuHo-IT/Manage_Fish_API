@@ -40,10 +40,32 @@
         <button class="btn btn-primary w-100 mt-3" @click="checkout">Proceed to Checkout</button>
       </div>
     </div>
+    <div class="mb-3">
+    <label for="sortOrder" class="form-label">Sort by:</label>
+    <select v-model="sortOrder" @change="fetchSortedProducts" class="form-select">
+      <option value="default">Default</option>
+      <option value="asc">Price: Low to High</option>
+      <option value="desc">Price: High to Low</option>
+      <option value="oldest">Oldest First</option>
+      <option value="newest">Newest First</option>
+    </select>
+  </div>
 
-    <!-- Admin Section: Create Product Button -->
+  <div class="slider-container">
+    <p>Price Range: ${{ minPrice }} - ${{ maxPrice }}</p>
+
+    <div class="slider">
+      <input type="range" v-model="minPrice" min="0" max="50" @input="fetchSortedProducts" />
+      <input type="range" v-model="maxPrice" min="51" max="100" @input="fetchSortedProducts" />
+    </div>
+  </div>
+
     <button v-if="isAuthenticated && isAdmin" @click="showCreateProduct" class="btn btn-primary">
       Create Product
+    </button>
+
+    <button v-if="isAuthenticated && isAdmin" @click="showCreateCoupon" class="btn btn-primary">
+      Create Coupon
     </button>
 
     <router-view></router-view>
@@ -53,6 +75,9 @@
       </template>
       <template v-else>
         <CreateProduct />
+      </template>
+      <template v-else>
+        <CreateCoupon/>
       </template>
     </Modal>
 
@@ -145,14 +170,17 @@
 </style>
 
 <script setup>
-import { ref, onMounted, computed, onBeforeUnmount } from "vue";
+import { ref, onMounted, computed, onBeforeUnmount, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
 import Modal from "./Modal.vue";
 import CreateProduct from "./CreateProduct.vue";
 import EditProduct from "./EditProduct.vue";
+import CreateCoupon from "./CreateCoupon.vue";
 
-
+const minPrice = ref(0);
+const maxPrice = ref(100);
+const sortOrder = ref("default");
 const products = ref([]);
 const isAuthenticated = ref(!!localStorage.getItem("token"));
 const isAdmin = ref(false);
@@ -163,6 +191,7 @@ const isEditMode = ref(false);
 const currentProduct = ref(null);
 const api = "https://localhost:7229/api/FishProductAPI";
 const cart = ref([]);
+
 
 // Import and initialize useRouter correctly
 const router = useRouter();
@@ -213,9 +242,29 @@ const imageSrc = (product) => {
   return "path/to/default-image.png";
 };
 
-const getProductData = () => {
+const fetchSortedProducts = () => {
+  let apiUrl = `https://localhost:7229/api/FishProductAPI/GetProductInRange?min=${minPrice.value}&max=${maxPrice.value}`;
+  
+    switch (sortOrder.value) {
+      case "asc":
+        apiUrl = `https://localhost:7229/api/FishProductAPI/GetProductAsc?min=${minPrice.value}&max=${maxPrice.value}`;
+        break;
+      case "desc":
+        apiUrl = `https://localhost:7229/api/FishProductAPI/GetProductDesc?min=${minPrice.value}&max=${maxPrice.value}`;
+        break;
+      case "oldest":
+        apiUrl = `https://localhost:7229/api/FishProductAPI/GetProductOldest?min=${minPrice.value}&max=${maxPrice.value}`;
+        break;
+      case "newest":
+        apiUrl = `https://localhost:7229/api/FishProductAPI/GetProductNewest?min=${minPrice.value}&max=${maxPrice.value}`;
+        break;
+    }
+  
+
+  console.log("Fetching data from:", apiUrl); // Debugging log
+
   axios
-    .get(api)
+    .get(apiUrl)
     .then((response) => {
       if (response.data.isSuccess) {
         products.value = response.data.result;
@@ -227,6 +276,15 @@ const getProductData = () => {
       console.error("Error fetching data:", error);
     });
 };
+
+
+// Fetch products on load
+const getProductData = () => {
+  fetchSortedProducts();
+};
+
+
+
 const deleteProduct = (productId) => {
   const token = localStorage.getItem("token");
   axios
@@ -280,25 +338,24 @@ const endSession = async () => {
   }
 };
 
-
-onMounted(() => {
-  trackView();
-  loadAuthState();
-  getProductData();
-  startSession();
-  window.addEventListener("beforeunload", endSession);
-});
 onBeforeUnmount(() => {
   window.removeEventListener("beforeunload", endSession);
 });
 
-
 const showCreateProduct = () => {
   isEditMode.value = false;
-  currentProduct.value = null; // Reset current product
+  currentProduct.value = null; 
   isModalVisible.value = true;
   document.querySelector(".swiper").style.display = "none";
 };
+
+const showCreateCoupon = () => {
+  isEditMode.value = false;
+  currentProduct.value = null; 
+  isModalVisible.value = true;
+  document.querySelector(".swiper").style.display = "none";
+};
+
 
 const showEditProduct = (product) => {
   isEditMode.value = true;
@@ -312,7 +369,28 @@ const hideModal = () => {
   isModalVisible.value = false;
   document.querySelector(".swiper").style.display = "block";
 };
+
+onMounted(() => {
+  trackView();
+  loadAuthState();
+  getProductData();
+  startSession();
+
+  window.addEventListener("beforeunload", endSession);
+});
+
+onMounted(() => {
+  trackView();
+  loadAuthState();
+  getProductData();
+  startSession();
+
+  window.addEventListener("beforeunload", endSession);
+});
 </script>
 
 <style src="@/assets/css/style.css"></style>
 <style src="@/assets/css/vendor.css"></style>
+<style>
+@import url("https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
+</style>
